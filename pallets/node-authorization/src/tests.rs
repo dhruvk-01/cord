@@ -98,6 +98,16 @@ fn add_well_known_node_works() {
 			),
 			Error::<Test>::TooManyNodes
 		);
+
+		// assert_noop!(
+		// 	NodeAuthorization::add_well_known_node(
+		// 		RuntimeOrigin::signed(5), 
+		// 		TEST_NODE_INVALID_BYTES.to_vec(), 
+		// 		20
+		// 	),
+		// 	Error::<Test>::InvalidUtf8
+		// );
+
 	});
 }
 
@@ -116,6 +126,17 @@ fn adding_already_claimed_well_known_node_should_fail() {
 			NodeAuthorization::add_well_known_node(RuntimeOrigin::signed(1), node_id.clone(), 20),
 			Error::<Test>::AlreadyClaimed
 		);
+	});
+}
+
+#[test]
+fn invalid_utf_node_creation_should_fail() {
+	new_test_ext().execute_with(|| {
+		let node_id: NodeId = TEST_NODE_INVALID_BYTES.to_vec();
+
+		let node: Error<T> = NodeAuthorization::generate_peer_id(&node_id);
+
+		assert_eq!(node, Error::<Test>::InvalidUtf8);
 	});
 }
 

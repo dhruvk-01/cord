@@ -99,6 +99,8 @@ pub const TEST_NODE_5: &str = "12D3KooWCzvmH8ehWaPttWVzj1ERB1FvMqVcqfDRvwLqzJDAq
 pub const TEST_NODE_6: &str = "12D3KooW9tw9VUZkysjCwBpJo8ArH9TsgUWZhFqqUtii6VfTCvL6";
 pub const TEST_NODE_LEN: &str = "12D3KooWCzvmH8ehWaPttWVzj1ERB1FvMqVcqfDRvwLqzJDAqBih8123w";
 pub const TEST_NODE_7: &str = "13C3KooWCzVmH8ehW/PttWVzj1ERB1Fv0qVcqf1RvwLQzJDAqBih";
+pub const TEST_NODE_INVALID_BYTES: &[u8] = &[0xF0, 0x28, 0x8C, 0xBC]; 
+// let TEST_NODE_INVALID_VECTOR: NodeId = TEST_NODE_INVALID_BYTES.to_vec();
 
 pub fn test_node(input: &str) -> NodeId {
 	input.as_bytes().to_vec()
